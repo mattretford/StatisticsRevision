@@ -1,0 +1,847 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>6 Solutions &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '06/solutions';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="7. Frequentist I: Confidence Intervals" href="../07/markdown.html" />
+    <link rel="prev" title="6 Practical" href="practical.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">BASIC PROBABILITY</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02/markdown.html">2. Discrete distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03/markdown.html">3. Continuous Distributions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">STATISTICAL INFERENCE</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../04/markdown.html">4. Populations and Samples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05/markdown.html">5. Likelihood</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="markdown.html">6. Maximum Likelihood Estimator</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="practical.html">6 Practical</a></li>
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">6 Solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../07/markdown.html">7. Frequentist I: Confidence Intervals</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../07/practical.html">7. Practical</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../07/solutions.html">7. Solutions</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../08/markdown.html">8. Frequentist II: Hypothesis tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09/markdown.html">9. Bayesain Statistics I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10/markdown.html">10. Bayesian Statistics II</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">STATISTICAL MODELLING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../11/markdown.html">11. Types of Investigation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../12/markdown.html">12. Linear Regression I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../13/markdown.html">13. Linear Regression II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../14/markdown.html">12. Linear Regression III</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../15/markdown.html">13. Logistic Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../16/markdown.html">13. Generalised Linear Models (GLMs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../17/markdown.html">17. The role of regression</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F06/solutions.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/06/solutions.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>6 Solutions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-1-poisson-distribution">Question 1: Poisson distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-2-normal-distribution">Question 2: Normal distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-3-properties-of-the-mle">Question 3: Properties of the MLE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-4-gamma-distribution-optional">Question 4: Gamma distribution (Optional)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-approach">Graphical approach:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algebraic-approach">ALGEBRAIC APPROACH:</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="solutions">
+<h1>6 Solutions<a class="headerlink" href="#solutions" title="Permalink to this heading">#</a></h1>
+<p>In this workshop, we will consolidate our understanding of maximum likelihood estimation in the case where you have <span class="math notranslate nohighlight">\(n\)</span> i.i.d. observations.</p>
+<section id="question-1-poisson-distribution">
+<h2>Question 1: Poisson distribution<a class="headerlink" href="#question-1-poisson-distribution" title="Permalink to this heading">#</a></h2>
+<p>In this question, we will derive the MLE for <span class="math notranslate nohighlight">\(\lambda\)</span> for the Poisson distribution where were have <span class="math notranslate nohighlight">\(n\)</span> i.i.d. observations. Recall from the Practical in Session 5 that a store manager wishes to estimate the number of customers to expect during lunch hour. The Poisson distribution is often used to model discrete counts (numbers of people in the queue), and has the parameter  𝜆 . Suppose they collect data from 10 random days between 12pm and 1pm, and they get the following numbers of customers: 26, 23, 29, 27, 20, 19, 24, 24, 25, 21.</p>
+<p>a) Find the likelihood function for <span class="math notranslate nohighlight">\(\lambda\)</span>, given that we have <span class="math notranslate nohighlight">\(n\)</span> i.i.d. observations.</p>
+<p><em>Since the overall likelihood from independent observations is the product of the likelihood from each observation, we have that</em>:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{L} \left( \lambda \mid x_1, x_2, ..., x_n \right) = \prod_{i=1}^n\frac{e^{-\lambda} \lambda^{x_i}}{x_i!}.
+\]</div>
+<p>b) Now find the log-likelihood for <span class="math notranslate nohighlight">\(\lambda\)</span>, given that we have <span class="math notranslate nohighlight">\(n\)</span> i.i.d. observations.</p>
+<p><em>The log-likelihood is</em></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+l \left( \lambda \mid x_1, x_2, ..., x_n  \right) &amp;= \sum_{i=1}^n \log \left( \frac{e^{-\lambda} \lambda^{x_i}}{x_i!} \right)\\
+                                                  &amp;= \sum_{i=1}^n  \left(-\lambda + x_i \log \lambda - \log(x_i!) \right)\\
+                                                  &amp;=-n\lambda + \log\lambda \sum_{i=1}^n x_i -\sum_{i=1}^n \log(x_i!) \\
+\end{align}
+\end{split}\]</div>
+<p>c) In the lectures, we went over the three steps for obtaining the MLE. Use this procedure to find the MLE for <span class="math notranslate nohighlight">\(\lambda\)</span> when you have <span class="math notranslate nohighlight">\(n\)</span> i.i.d. observations. Find the maximum likelihood estimate for our example with ten customers.</p>
+<p><em>Follow the three steps</em>:</p>
+<p><strong>Step1:</strong> Taking the derivative with respect to <span class="math notranslate nohighlight">\(\lambda\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+\frac{d l\left( \lambda \mid x_1 ,..., x_n \right) }{d \lambda}= -n + \frac{\sum_{i=1}^n x_i }{\lambda}
+\end{equation}
+\]</div>
+<p><strong>Step2:</strong> Setting the derivative equal to zero and solving for <span class="math notranslate nohighlight">\(\lambda\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+0= -n + \frac{\sum_{i=1}^n x_i }{\lambda}
+\end{equation}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+\hat{\lambda}= \frac{\sum_{i=1}^n x_i }{n} = \bar{x}
+\end{equation}
+\]</div>
+<p><strong>Step3:</strong> Verify you have a maximum:<br />
+This is a maximum, since the second derivative of the log-likelihood is <span class="math notranslate nohighlight">\(-\frac{\sum_{i=1}^n x_i }{\lambda^2}\)</span> which is negative since <span class="math notranslate nohighlight">\(x_i\)</span> and <span class="math notranslate nohighlight">\(\lambda\)</span> are positive.</p>
+<p><em>Find the MLE for our example</em>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">##Compute the MLE </span>
+
+<span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">26</span><span class="p">,</span><span class="w"> </span><span class="m">23</span><span class="p">,</span><span class="w"> </span><span class="m">29</span><span class="p">,</span><span class="w"> </span><span class="m">27</span><span class="p">,</span><span class="w"> </span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="m">19</span><span class="p">,</span><span class="w"> </span><span class="m">24</span><span class="p">,</span><span class="w"> </span><span class="m">24</span><span class="p">,</span><span class="w"> </span><span class="m">25</span><span class="p">,</span><span class="w"> </span><span class="m">21</span><span class="p">)</span>
+<span class="nf">mean</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">23.8</div></div>
+</div>
+<p>We have that <span class="math notranslate nohighlight">\(\hat{\lambda}=23.8\)</span>.</p>
+<p>d) OPTIONAL: Plot the log-likelihood function given the data, allowing <span class="math notranslate nohighlight">\(\lambda\)</span> to take values between 0 and 40. Verify that that answer you found for the the MLE is indeed the maximum of the graph.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">options</span><span class="p">(</span><span class="n">repr.plot.width</span><span class="o">=</span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="n">repr.plot.height</span><span class="o">=</span><span class="m">6</span><span class="p">)</span>
+
+<span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">26</span><span class="p">,</span><span class="w"> </span><span class="m">23</span><span class="p">,</span><span class="w"> </span><span class="m">29</span><span class="p">,</span><span class="w"> </span><span class="m">27</span><span class="p">,</span><span class="w"> </span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="m">19</span><span class="p">,</span><span class="w"> </span><span class="m">24</span><span class="p">,</span><span class="w"> </span><span class="m">24</span><span class="p">,</span><span class="w"> </span><span class="m">25</span><span class="p">,</span><span class="w"> </span><span class="m">21</span><span class="p">)</span>
+
+<span class="c1">#possible values for lambda</span>
+<span class="n">lambda</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">40</span><span class="p">,</span><span class="w"> </span><span class="m">0.02</span><span class="p">)</span>
+
+<span class="n">sum_data</span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">sumlogfac_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="nf">factorial</span><span class="p">(</span><span class="n">data</span><span class="p">)))</span>
+<span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">10</span>
+<span class="c1"># find the log-likelihood for each value of lambda</span>
+<span class="n">ll</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="o">-</span><span class="n">n</span><span class="o">*</span><span class="n">lambda</span><span class="w"> </span><span class="o">+</span><span class="nf">log</span><span class="p">(</span><span class="n">lambda</span><span class="p">)</span><span class="o">*</span><span class="n">sum_data</span><span class="o">-</span><span class="n">sumlogfac_data</span>
+
+<span class="nf">plot</span><span class="p">(</span><span class="n">lambda</span><span class="p">,</span><span class="w"> </span><span class="n">ll</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s">&quot;l&quot;</span><span class="p">,</span><span class="n">lwd</span><span class="o">=</span><span class="m">3</span><span class="p">,</span><span class="w"> </span>
+<span class="w">     </span><span class="n">xlab</span><span class="o">=</span><span class="nf">expression</span><span class="p">(</span><span class="n">lambda</span><span class="p">),</span><span class="w"> </span><span class="n">ylab</span><span class="o">=</span><span class="s">&quot;log-likelihood&quot;</span><span class="p">)</span>
+<span class="n">oo</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">which</span><span class="p">(</span><span class="n">ll</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">ll</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;Maximal value found when lambda is &quot;</span><span class="p">,</span><span class="n">lambda</span><span class="p">[</span><span class="n">oo</span><span class="p">]))</span>
+<span class="nf">abline</span><span class="p">(</span><span class="n">v</span><span class="o">=</span><span class="n">lambda</span><span class="p">[</span><span class="n">oo</span><span class="p">],</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="n">lwd</span><span class="o">=</span><span class="m">3</span><span class="p">,</span><span class="n">lty</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Maximal value found when lambda is 23.8&quot;
+</pre></div>
+</div>
+<img alt="../_images/d76b1c41d9b2db86f3814f55f37e7235d318cefa6fc275bf55d93ebbb7cc657f.png" src="../_images/d76b1c41d9b2db86f3814f55f37e7235d318cefa6fc275bf55d93ebbb7cc657f.png" />
+</div>
+</div>
+</section>
+<section id="question-2-normal-distribution">
+<h2>Question 2: Normal distribution<a class="headerlink" href="#question-2-normal-distribution" title="Permalink to this heading">#</a></h2>
+<p>In the lectures, we found the MLE for <span class="math notranslate nohighlight">\(\mu\)</span> when you have a normally distributed i.i.d. sample of size <span class="math notranslate nohighlight">\(n\)</span>. Now find the MLE of <span class="math notranslate nohighlight">\(\sigma^2\)</span>. Note that you are treating <span class="math notranslate nohighlight">\(\sigma^2\)</span> as a variable in its own right; you may find it helpful to write <span class="math notranslate nohighlight">\(u = \sigma^2\)</span> and differentiate with respect to <span class="math notranslate nohighlight">\(u\)</span>.</p>
+<p>Recall that we obtained the log-likelihood in the lectures:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}  
+l \left(\mu, \sigma^2 \mid  \boldsymbol{x}  \right)
+&amp;=  {-\frac{n}{2}}\log (2 \pi \sigma^2) -\frac{1}{2\sigma^2} \sum_{i=1}^n (x_i-\mu)^2
+\end{align}
+\]</div>
+<p><strong>Step1</strong>: Take the derivative of the log-likelihood with respect to  <span class="math notranslate nohighlight">\(\sigma^2\)</span>. This requires use of the chain rule:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}  
+\frac{d l \left(\mu, \sigma^2 \mid  \mathbf{x}  \right) }{d \sigma^2}
+&amp;=  -\frac{n}{2 \sigma^2} + \frac{\sum_{i=1}^n (x_i-\mu) ^2 }{2 (\sigma^2)^2}
+\end{align}
+\]</div>
+<p><strong>Step2:</strong> Setting the derivative equal to zero and solving for <span class="math notranslate nohighlight">\(\sigma^2\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}  
+0 &amp;=  -\frac{n}{2 \sigma^2} + \frac{\sum_{i=1}^n (x_i-\mu) ^2 }{2 (\sigma^2)^2}
+\end{align}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}  
+\frac{n}{ \sigma^2}  &amp;= \frac{\sum_{i=1}^n (x_i-\mu) ^2 }{ (\sigma^2)^2}
+\end{align}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}  
+n\sigma^2  &amp;=\sum_{i=1}^n (x_i-\mu) ^2 
+\end{align}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}  
+\sigma^2  &amp;=\frac{\sum_{i=1}^n (x_i-\mu) ^2 }{n}
+\end{align}
+\]</div>
+<p>We have that the MLE for <span class="math notranslate nohighlight">\(\sigma^2\)</span> is the variance, <span class="math notranslate nohighlight">\(\frac{\sum_{i=1}^n (x_i-\mu) ^2 }{n}\)</span>.</p>
+<p><strong>Step3:</strong> Find the second derivative:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}  
+\frac{d l^2 \left(\mu, \sigma^2 \mid  \mathbf{x}  \right) }{d (\sigma^2 )^2}
+&amp;=  \frac{n}{2 (\sigma^2)^2} -2 \frac{\sum_{i=1}^n (x_i-\mu) ^2 }{2 (\sigma^2)^3} \\
+&amp;= \frac{ n\sigma^2-2\sum_{i=1}^n (x_i-\mu) ^2 }{2(\sigma^2)^3}
+\end{align} 
+\end{split}\]</div>
+<p>Note that the denominator is positive. So we just need to show that the numerator is negative. If we plug in our MLE for <span class="math notranslate nohighlight">\(\sigma^2\)</span>, the numerator becomes;</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+&amp;\frac{n\sum_{i=1}^n (x_i-\mu) ^2 }{n}-2\sum_{i=1}^n (x_i-\mu) ^2  \\
+&amp;=-\sum_{i=1}^n (x_i-\mu) ^2,
+\end{align}
+\end{split}\]</div>
+<p>which is negative, so we have verified that the MLE of <span class="math notranslate nohighlight">\(\sigma^2 =\frac{\sum_{i=1}^n (x_i-\mu) ^2 }{n}\)</span>. Now, this estimator is actually biased (particularly for small samples), so typically, the sample variance, <span class="math notranslate nohighlight">\(\frac{\sum_{i=1}^n (x_i-\mu) ^2 }{n-1}\)</span>, is used since it is unbiased. This will be discussed in more detail in the Linear Regression section.</p>
+</section>
+<section id="question-3-properties-of-the-mle">
+<h2>Question 3: Properties of the MLE<a class="headerlink" href="#question-3-properties-of-the-mle" title="Permalink to this heading">#</a></h2>
+<p>In the lectures, we used a simulation to demonstrate some important asymptotic properties of the maximum likelihood estimator. We generated a sample of size 8 from the exponential distribution where <span class="math notranslate nohighlight">\(\lambda=0.0818\)</span>. We then calculated the MLE <span class="math notranslate nohighlight">\(\frac{1}{\bar{x}}\)</span>, repeated this 100 times and plotted a histogram of the MLEs. This is the sampling distribution of the MLE. We then changed the sample size, <span class="math notranslate nohighlight">\(n\)</span>, to larger numbers and observed the behavior of the histogram.</p>
+<p>Let us denote by <span class="math notranslate nohighlight">\(M\)</span> the median of the observations. Can you change the code below to investigate how the distribution of <span class="math notranslate nohighlight">\(\frac{1}{M}\)</span> changes as <span class="math notranslate nohighlight">\(n\)</span> becomes larger? What do you notice?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="c1">#  make this sample size bigger, and see what happens to the histogram! </span>
+
+<span class="c1">#MLEs will be stored in this vector</span>
+<span class="n">mle</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">)</span>
+
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">100</span><span class="p">){</span>
+<span class="w">  </span><span class="c1">#generate a sample of size n from an exponential distribution with lambda=0.0818</span>
+<span class="w">  </span><span class="n">sample</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rexp</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">rate</span><span class="o">=</span><span class="m">0.0818</span><span class="p">)</span>
+<span class="w">  </span><span class="c1">#calculate the MLE (the reciprocal mean of the sample) and store it </span>
+<span class="w">  </span><span class="n">mle</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="o">/</span><span class="nf">mean</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span><span class="w">    </span><span class="c1">##################just need to change this to 1/median(sample)</span>
+<span class="p">}</span>
+
+<span class="c1">#plot a histogram of the 100 MLEs </span>
+<span class="nf">hist</span><span class="p">(</span><span class="n">mle</span><span class="p">,</span><span class="w"> </span><span class="n">breaks</span><span class="o">=</span><span class="m">20</span><span class="p">,</span><span class="w"> </span>
+<span class="w">     </span><span class="n">xlim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0.3</span><span class="p">),</span><span class="w"> </span>
+<span class="w">     </span><span class="n">main</span><span class="o">=</span><span class="s">&quot;Histogram of MLE&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">     </span><span class="n">xlab</span><span class="o">=</span><span class="s">&quot;MLE&quot;</span><span class="p">)</span>
+<span class="c1">#add red line to indicate true lambda </span>
+<span class="nf">abline</span><span class="p">(</span><span class="n">v</span><span class="o">=</span><span class="m">0.0818</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/253958403877fcfc9f571bb518e05e0cb2785eb36d47c6c2a5ac2b9e0775513d.png" src="../_images/253958403877fcfc9f571bb518e05e0cb2785eb36d47c6c2a5ac2b9e0775513d.png" />
+</div>
+</div>
+<p>Using the <span class="math notranslate nohighlight">\(\frac{1}{M}\)</span> as an estimator, the estimates are much larger than the true value; this makes sense since the exponential distribution is skewed to the right. The estimator <span class="math notranslate nohighlight">\(\frac{1}{M}\)</span> does not have the asymptotic properties that the the MLE for <span class="math notranslate nohighlight">\(\lambda\)</span> has - e.g. you can see that it is biased.</p>
+</section>
+<section id="question-4-gamma-distribution-optional">
+<h2>Question 4: Gamma distribution (Optional)<a class="headerlink" href="#question-4-gamma-distribution-optional" title="Permalink to this heading">#</a></h2>
+<p>This optional question will explore the gamma distribution. It is used to model real‐valued positive measurements, such as time waiting for a hospital bed, or time spent in a queue when you make a phone call to your electricity supplier. It is characterized by two parameters, the shape parameter <span class="math notranslate nohighlight">\(\alpha\)</span> and scale parameter <span class="math notranslate nohighlight">\(\beta\)</span> (though other parameterizations exist). Both <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> are positive.</p>
+<p>Suppose that you make a phone call to your electricity supplier and you are put on hold in a queue. If we assume that the company picks up the calls in a way that is completely random (a Poisson process), the waiting time would have a gamma distribution with <span class="math notranslate nohighlight">\(\alpha\)</span> equal to the number of customers in the queue and <span class="math notranslate nohighlight">\(\beta\)</span> equal to the average wait time when you are at the front of the queue. The p.d.f. of the gamma distribution is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+f \left( x \mid \alpha, \beta \right) = \frac{\beta^{\alpha}}{\Gamma(\alpha)}x^{\alpha-1}e^{-\beta x}, 
+\end{equation}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Gamma \left( \cdot \right)\)</span> is the gamma function. For positive integers <span class="math notranslate nohighlight">\(\alpha\)</span>, we have that <span class="math notranslate nohighlight">\( \Gamma (\alpha )=(\alpha -1)!\)</span>.</p>
+<p>Suppose you observe that your wait time for this queue is 4 minutes. How would we try to obtain a maximum likelihood estimate for <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span>?</p>
+<p>For now, let’s assume that you did not know how many people were in the queue in front of you. The code below plots the surface of the likelihood for <span class="math notranslate nohighlight">\(1 \leq \alpha \leq 20\)</span> and <span class="math notranslate nohighlight">\(1 \leq \beta \leq 10\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">plotgamma</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">){</span>
+<span class="w">  </span><span class="nf">dgamma</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">shape</span><span class="o">=</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">rate</span><span class="o">=</span><span class="n">b</span><span class="p">)</span><span class="w"> </span>
+<span class="w">  </span>
+<span class="p">}</span>
+
+<span class="n">alpha</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="m">0.1</span><span class="p">)</span>
+<span class="n">beta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">0.1</span><span class="p">)</span>
+<span class="n">contour</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">outer</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="w"> </span><span class="n">beta</span><span class="p">,</span><span class="w">  </span><span class="n">plotgamma</span><span class="p">)</span>
+
+<span class="nf">persp</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="w"> </span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="n">contour</span><span class="p">)</span>
+
+<span class="c1"># or if you prefer 2-D figures...</span>
+<span class="n">vals</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.data.frame</span><span class="p">(</span><span class="nf">expand.grid</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="n">beta</span><span class="p">))</span>
+<span class="n">vals</span><span class="o">$</span><span class="n">llike</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dgamma</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">shape</span><span class="o">=</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">rate</span><span class="o">=</span><span class="n">b</span><span class="p">)</span><span class="w"> </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="ow">in</span> <span class="n">dgamma</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">shape</span> <span class="o">=</span> <span class="n">a</span><span class="p">,</span> <span class="n">rate</span> <span class="o">=</span> <span class="n">b</span><span class="p">):</span> <span class="nb">object</span> <span class="s1">&#39;a&#39;</span> <span class="ow">not</span> <span class="n">found</span>
+<span class="ne">Traceback</span>:
+
+<span class="mi">1</span><span class="o">.</span> <span class="n">dgamma</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">shape</span> <span class="o">=</span> <span class="n">a</span><span class="p">,</span> <span class="n">rate</span> <span class="o">=</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/bf98a4780675dbda63a41215b76647bfa32ade43d85a644b7934e13c506ff920.png" src="../_images/bf98a4780675dbda63a41215b76647bfa32ade43d85a644b7934e13c506ff920.png" />
+</div>
+</div>
+<p>As you can see, the maximum likelihood estimate of <span class="math notranslate nohighlight">\(\alpha\)</span> depends on the value of <span class="math notranslate nohighlight">\(\beta\)</span> and vice-versa. There is a dependence between the two parameters for the gamma distribution.</p>
+<p>If we know that <span class="math notranslate nohighlight">\(\alpha=12\)</span>, i.e. that there are 12 people in front of you in the queue, can you obtain the maximum likelihood estimate for <span class="math notranslate nohighlight">\(\beta\)</span>? You can take either a graphical approach or an algebraic approach.</p>
+<section id="graphical-approach">
+<h3>Graphical approach:<a class="headerlink" href="#graphical-approach" title="Permalink to this heading">#</a></h3>
+<p>We plot the likelihood function of <span class="math notranslate nohighlight">\(\beta\)</span>, keeping <span class="math notranslate nohighlight">\(\alpha\)</span> fixed at 12.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">beta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">0.1</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="nf">dgamma</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">shape</span><span class="o">=</span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">rate</span><span class="o">=</span><span class="n">beta</span><span class="p">),</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s">&quot;l&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c2596c1024fc456079acb592e9a0127153fd5931982ca72a40e4f7e69868ca9f.png" src="../_images/c2596c1024fc456079acb592e9a0127153fd5931982ca72a40e4f7e69868ca9f.png" />
+</div>
+</div>
+<p>As it is a little difficult to see where the maximum is, we reproduce the plot with <span class="math notranslate nohighlight">\(\beta\)</span> taking values just between 2 and 4.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">beta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">0.1</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="nf">dgamma</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">shape</span><span class="o">=</span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">rate</span><span class="o">=</span><span class="n">beta</span><span class="p">),</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s">&quot;l&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/d9008fa44fb28e1b7281fd4dc5bebf14ed5add4479ec0b4ca2cbf611500a8cf0.png" src="../_images/d9008fa44fb28e1b7281fd4dc5bebf14ed5add4479ec0b4ca2cbf611500a8cf0.png" />
+</div>
+</div>
+<p>We can see that the MLE is <span class="math notranslate nohighlight">\(\hat{\beta}=3\)</span>.</p>
+</section>
+<section id="algebraic-approach">
+<h3>ALGEBRAIC APPROACH:<a class="headerlink" href="#algebraic-approach" title="Permalink to this heading">#</a></h3>
+<p>We have that the likelihood function is:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+\mathcal{L} \left( \beta \mid x, \alpha \right) = \frac{\beta^{\alpha}}{\Gamma(\alpha)}x^{\alpha-1}e^{-\beta x}
+\end{equation}
+\]</div>
+<p>The log-likelihood is:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+l \left( \beta \mid x, \alpha \right) = \alpha ln \beta - ln \Gamma(\alpha) + (\alpha-1)lnx-\beta x 
+\end{equation}
+\]</div>
+<p>And now we differentiate this with respect to <span class="math notranslate nohighlight">\(\beta\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+\frac{dl \left( \beta \mid x, \alpha \right)}{d\beta} = \frac{\alpha}{\beta} - x 
+\end{equation}
+\]</div>
+<p>Setting the derivative equal to zero and solving for <span class="math notranslate nohighlight">\(\beta\)</span>, we have:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+0 = \frac{\alpha}{\beta} - x 
+\end{equation}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+\hat{\beta} = \frac{\alpha}{x}  
+\end{equation}
+\]</div>
+<p>We have that the MLE is: <span class="math notranslate nohighlight">\(\hat{\beta} = \frac{\alpha}{x}\)</span>. This is a maximum since the second derivative of the log-likelihood is equal to <span class="math notranslate nohighlight">\(-\frac{\alpha}{\beta^2}\)</span>. If we plug <span class="math notranslate nohighlight">\(\frac{\alpha}{x}\)</span> for <span class="math notranslate nohighlight">\(\beta\)</span> in the second derivative, we get <span class="math notranslate nohighlight">\(\frac{-x^2}{\alpha}\)</span> which is negative, as <span class="math notranslate nohighlight">\(\alpha\)</span> is positive.</p>
+<p>In our example, we have that <span class="math notranslate nohighlight">\(\alpha\)</span> is 12, and we observe a waiting time of 4 minutes. Our MLE is <span class="math notranslate nohighlight">\(\hat{\beta}=\frac{12}{4}=3\)</span>, which agrees with our answer using the graphical approach.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./06"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="practical.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">6 Practical</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../07/markdown.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">7. Frequentist I: Confidence Intervals</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-1-poisson-distribution">Question 1: Poisson distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-2-normal-distribution">Question 2: Normal distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-3-properties-of-the-mle">Question 3: Properties of the MLE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-4-gamma-distribution-optional">Question 4: Gamma distribution (Optional)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-approach">Graphical approach:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algebraic-approach">ALGEBRAIC APPROACH:</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

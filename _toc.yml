@@ -1,0 +1,36 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+  - caption: BASIC PROBABILITY
+    chapters:
+    - file: 02/markdown
+    - file: 03/markdown
+    sections:
+      - file: 02/solutions
+  - caption: STATISTICAL INFERENCE
+    chapters:
+    - file: 04/markdown
+    - file: 05/markdown
+    - file: 06/markdown
+      sections:
+      - file: 06/practical
+      - file: 06/solutions
+    - file: 07/markdown
+      sections:
+        - file: 07/practical
+        - file: 07/solutions
+    - file: 08/markdown
+    - file: 09/markdown
+    - file: 10/markdown
+  - caption: STATISTICAL MODELLING
+    chapters:
+    - file: 11/markdown
+    - file: 12/markdown
+    - file: 13/markdown
+    - file: 14/markdown
+    - file: 15/markdown
+    - file: 16/markdown
+    - file: 17/markdown

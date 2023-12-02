@@ -1,0 +1,733 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>8 Practical: Hypothesis testing and CIs - Solutions &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '08/08.Practical.Hypothesis.Testing.Solutions';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">BASIC PROBABILITY</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02/02solutions.html">Probability 1: Discrete distributions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">STATISTICAL INFERENCE</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../06/markdown.html">06 Maximul Likelihood Estimator</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../06/practical.html">6.1 R workshop for Maximum Likelihood estimation</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../06/solutions.html">06 Maximum Likelihood Estimation Solutions</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F08/08.Practical.Hypothesis.Testing.Solutions.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/08/08.Practical.Hypothesis.Testing.Solutions.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>8 Practical: Hypothesis testing and CIs - Solutions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">8 Practical: Hypothesis testing and CIs - Solutions</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-two-sample-t-test">The two-sample t-test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-confidence-intervals-and-p-values">Interpreting confidence intervals and p-values</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-two-proportions">Comparing two proportions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-tables-of-results">Interpreting tables of results</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="practical-hypothesis-testing-and-cis-solutions">
+<h1>8 Practical: Hypothesis testing and CIs - Solutions<a class="headerlink" href="#practical-hypothesis-testing-and-cis-solutions" title="Permalink to this heading">#</a></h1>
+<p>In this practical you will</p>
+<ul class="simple">
+<li><p>Interpret p-values alone and in conjunction with estimates and 95% confidence intervals</p></li>
+<li><p>Apply a two-sample t-test to compare two population means</p></li>
+<li><p>Apply the chi-squared test to compare two population proportions</p></li>
+</ul>
+<section id="the-two-sample-t-test">
+<h2>The two-sample t-test<a class="headerlink" href="#the-two-sample-t-test" title="Permalink to this heading">#</a></h2>
+<p><strong>Question 1.</strong></p>
+<p>i. This code reads in the data and performs a two-sample t-test.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Open data</span>
+<span class="n">baby</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;baby.csv&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="o">=</span><span class="s">&quot;,&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># T-test</span>
+<span class="nf">t.test</span><span class="p">(</span><span class="n">baby</span><span class="o">$</span><span class="n">Birth.Weight</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">baby</span><span class="o">$</span><span class="n">Maternal.Smoker</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="o">=</span><span class="n">baby</span><span class="p">,</span><span class="w"> </span><span class="n">conf.level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.95</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in file(file, &quot;rt&quot;):
+“cannot open file &#39;baby.csv&#39;: No such file or directory”
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="ow">in</span> <span class="n">file</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s2">&quot;rt&quot;</span><span class="p">):</span> <span class="n">cannot</span> <span class="nb">open</span> <span class="n">the</span> <span class="n">connection</span>
+<span class="ne">Traceback</span>:
+
+<span class="mi">1</span><span class="o">.</span> <span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s2">&quot;baby.csv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span><span class="p">)</span>
+<span class="mi">2</span><span class="o">.</span> <span class="n">read</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">file</span> <span class="o">=</span> <span class="n">file</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="n">sep</span><span class="p">,</span> <span class="n">quote</span> <span class="o">=</span> <span class="n">quote</span><span class="p">,</span> 
+ <span class="o">.</span>     <span class="n">dec</span> <span class="o">=</span> <span class="n">dec</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="n">fill</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">char</span> <span class="o">=</span> <span class="n">comment</span><span class="o">.</span><span class="n">char</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+<span class="mi">3</span><span class="o">.</span> <span class="n">file</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s2">&quot;rt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>ii. This is testing the null hypothesis that the true difference in means is equal to zero. (Oddly, the output states only the alternative rather than the null).</p>
+<p>iii. The p-value is p&lt;0.001. We know that therefore the 95% confidence interval will exclude the “null value”. In this case the null value is zero. It turns out the 95% CI is from 7.2 to 11.4, which does indeed exclude zero.</p>
+<p>iv. The code below  adds the option “var.equal=TRUE” to the command. What does this do? (You may want to look at the help file: ?t.test).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># T-test</span>
+<span class="nf">t.test</span><span class="p">(</span><span class="n">baby</span><span class="o">$</span><span class="n">Birth.Weight</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">baby</span><span class="o">$</span><span class="n">Maternal.Smoker</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="o">=</span><span class="n">baby</span><span class="p">,</span><span class="w"> </span><span class="n">conf.level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.95</span><span class="p">,</span><span class="w"> </span><span class="n">var.equal</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Two Sample t-test
+
+data:  baby$Birth.Weight by baby$Maternal.Smoker
+t = 8.7188, df = 1172, p-value &lt; 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+  7.180973 11.351312
+sample estimates:
+mean in group False  mean in group True 
+           123.0853            113.8192 
+</pre></div>
+</div>
+</div>
+</div>
+<p>The mean estimates in the two groups are the same. The main thing that has changed is that the confidence interval has become more narrow. This is because we gain more precision, more certainty, in exchange for our additional assumption that the standard deviation is the same in the two groups. In fact, the p-value is also lower, but it is such a small value that we can’t tell from the output.</p>
+</section>
+<section id="interpreting-confidence-intervals-and-p-values">
+<h2>Interpreting confidence intervals and p-values<a class="headerlink" href="#interpreting-confidence-intervals-and-p-values" title="Permalink to this heading">#</a></h2>
+<p><strong>Question 2.</strong></p>
+<p>This question is loosely based on the following article: <a class="reference external" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5640476/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5640476/</a>. However, please note that for pedagogic purposes (i.e. teaching) we have made up the study results, so the numbers below do not contain useful information about sepsis scores!</p>
+<p>Sepsis is a costly and often fatal medical condition which can affect hospitalized patients. To prevent death, it is vital to identify sepsis cases early.  There are various scores intended to measure suspicion of sepsis infection. These can be dichotomised by choosing cut-offs to classify patients into suspected sepsis and not.  We will consider the systemic inflammatory response system (SIRS) criteria to be the reference (comparison) score, and explore whether other scores do better, in terms of the proportion of sepsis cases correctly identified (the sensitivity).</p>
+<p>We will consider the following three scores:</p>
+<ul class="simple">
+<li><p>National and Modified Early Earning Score (NEWs), a very simple-to-apply early warning score</p></li>
+<li><p>quick Sepsis-related Organ Failure Assessment (qSOFA) score, also very simple-to-apply</p></li>
+<li><p>eCART score, derived from a random forest algorithm including vital signs, laboratory values, and patient demographics</p></li>
+</ul>
+<p>Two studies were undertaken to compare NEWS to the reference score SIRS (studies 1 and 2). Two studies were undertaken to compare qSOFA to the reference score SIRS (studies 3 and 4). One study was undertaken to compare eCART to SIRS (study 5).</p>
+<p>In order to make sufficient clinical difference to justify changing systems, the new system would need to increase the sensitivity by at least 5%.</p>
+<p>The (made-up) results are shown in the table below. Note that we have rounded the numbers a little for ease of reading.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Study</p></th>
+<th class="head"><p>System</p></th>
+<th class="head text-center"><p>Cost</p></th>
+<th class="head text-center"><p>Sample size</p></th>
+<th class="head text-center"><p>Increase in sensitivity (%)</p></th>
+<th class="head text-center"><p>SE</p></th>
+<th class="head text-center"><p>95% CI</p></th>
+<th class="head text-center"><p>p-value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>NEWs</p></td>
+<td class="text-center"><p>Cheap</p></td>
+<td class="text-center"><p>20</p></td>
+<td class="text-center"><p>15</p></td>
+<td class="text-center"><p>15.3</p></td>
+<td class="text-center"><p>(-15, 45)</p></td>
+<td class="text-center"><p>0.33</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>NEWs</p></td>
+<td class="text-center"><p>Cheap</p></td>
+<td class="text-center"><p>2,000</p></td>
+<td class="text-center"><p>15</p></td>
+<td class="text-center"><p>1.53</p></td>
+<td class="text-center"><p>(12, 18)</p></td>
+<td class="text-center"><p>&lt;0.001</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>qSOFA</p></td>
+<td class="text-center"><p>Cheap</p></td>
+<td class="text-center"><p>15</p></td>
+<td class="text-center"><p>10</p></td>
+<td class="text-center"><p>18.4</p></td>
+<td class="text-center"><p>(-26, 46)</p></td>
+<td class="text-center"><p>0.59</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>qSOFA</p></td>
+<td class="text-center"><p>Cheap</p></td>
+<td class="text-center"><p>15,000</p></td>
+<td class="text-center"><p>0.3</p></td>
+<td class="text-center"><p>0.57</p></td>
+<td class="text-center"><p>(-0.8, 1.4)</p></td>
+<td class="text-center"><p>0.59</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>eCART</p></td>
+<td class="text-center"><p>Expensive</p></td>
+<td class="text-center"><p>20,000</p></td>
+<td class="text-center"><p>3</p></td>
+<td class="text-center"><p>0.5</p></td>
+<td class="text-center"><p>(2, 4)</p></td>
+<td class="text-center"><p>0.02</p></td>
+</tr>
+</tbody>
+</table>
+<p>i. Consider study 1. This compares the NEWs score to the default score, SIRS.</p>
+<ul class="simple">
+<li><p>The null hypothesis is that the increase in sensitivity is zero (i.e. it’s a test of two proportions). The p-value is p=0.33, represting little evidence against the null hypothesis.</p></li>
+<li><p>The point estimate tells us that our current best guess is that NEWs increases the sensitivity by 15% (which, if true, represents a clinically important increase).</p></li>
+<li><p>The 95% confidence interval tells us that values between -15% and 45% are consistent with our observed data, i.e. the true change in sensitivity could be that the NEWs score decreases sensitivity by 15% or that it increases sensitivity by 45%. Basically, our data haven’t ruled much out and we still know very little about the NEWs test. The p-value of 0.33 reflects a huge lack of knowledge.</p></li>
+</ul>
+<p>ii. Consider study 2. This also compares the NEWS score to the default score, SIRS.</p>
+<ul class="simple">
+<li><p>Studies 1 and 2 have the same point estimate (NEWs increases the sensitivity by 15% compared to SIRS).</p></li>
+<li><p>The size - study 2 has 2000 people compared with the 20 people in study 1.</p></li>
+<li><p>The 95% confidence interval in study 2 tells us that the observed data are consistent with the true increase in sensitivity (comparing NEWs and SIRS) could be as low as 12% or as high as 18%. All values within this interval represent clinically important increases in sensitivity.</p></li>
+<li><p>The p-value is p&lt;0.001, representing strong evidence against the null hypothesis.</p></li>
+</ul>
+<p>Overall, study 2 shows that NEWs has a clinically important increase in sensitivity compared to SIRs. The results of studies 1 and 2 are consistent with one another. Study 1 did not show the absence of an effect, it just didn’t have sufficient information to find an effect.</p>
+<p>This illustrates the often quoted saying: absence of evidence is not evidence of absence. Just because study 1 couldn’t find evidence that NEWs was better than SIRS did not mean that it wasn’t.</p>
+<p>iii. Studies 3 and 4 both have a p-value of p=0.59, representing no evidence against the null hypothesis.</p>
+<p>For study 3, the estimated increase in sensitivity is 10% (a clinically important increase), with 95% CI from -26% to 46%. So the CI includes many values representing clinically important changes in both directions. Here, we simply have little evidence of anything. This is due to the small sample size, n=15.</p>
+<p>For study 4, the estimaetd increase in sensitivity is 0.3% (a clinically unimportant change), with 95% CI from -0.8% to 1.4%. The CI excludes all clinically important changes. Thus this study has essentially ruled out the possibility that qSOFA improves sensitivity compared to SIRs.</p>
+<p>The conclusions of these two studies are completely different. Study 1’s conclusion is that we need more information. Study 2’s conclusion is that qSOFA isn’t a worthwhile algorithm. So the same p-value can represent very different results. This is why we always need to consider estimates and confidence intervals, where possible.</p>
+<p>iv. Study 5 estimates that eCART increase sensitivity by 3% (95% CI: 2%, 4%). The confidence interval excludes all clinically important values. The eCART algorithm is therefore expensive and likely clinically  not useful.  So, despite a “significant” p-value, we would be unwise to recommend this system.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="comparing-two-proportions">
+<h1>Comparing two proportions<a class="headerlink" href="#comparing-two-proportions" title="Permalink to this heading">#</a></h1>
+<p><strong>Question 3.</strong></p>
+<p>The code below creates a new variable containing a binary outcome of low birthweight.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Low birthweight</span>
+<span class="n">lbw</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">baby</span><span class="o">$</span><span class="n">Birth.Weight</span><span class="o">&lt;</span><span class="m">88</span>
+
+<span class="c1"># Numbers in each group</span>
+<span class="nf">table</span><span class="p">(</span><span class="n">baby</span><span class="o">$</span><span class="n">Maternal.Smoker</span><span class="p">)</span>
+
+<span class="c1"># Numbers of low birthweight babies in each group</span>
+<span class="nf">table</span><span class="p">(</span><span class="n">lbw</span><span class="p">,</span><span class="w"> </span><span class="n">baby</span><span class="o">$</span><span class="n">Maternal.Smoker</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False  True 
+  715   459 
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       
+lbw     False True
+  FALSE   694  423
+  TRUE     21   36
+</pre></div>
+</div>
+</div>
+</div>
+<p>21 of the 715 babies born to non-smoking mothers were low birthweight (0.029 or 2.9%).</p>
+<p>36 of the 459 babies born to smoking mothers were low birthweight (0.078 or 7.8%).</p>
+<p>In our sample, there is a higher proportion of low birthweight among babies whose mother smoked. This is clinically plausible and in the expected direction.</p>
+<p>The sample difference in proportion is 0.078 - 0.029 = 0.049 (4.9% difference).</p>
+<p>The code below perform a chi-squared test.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">### Compare proportion of low birthweight between mothers who do and don&#39;t smoke</span>
+
+<span class="nf">prop.test</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">21</span><span class="p">,</span><span class="w"> </span><span class="m">36</span><span class="p">),</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">715</span><span class="p">,</span><span class="w"> </span><span class="m">459</span><span class="p">),</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NULL</span><span class="p">,</span>
+<span class="w">          </span><span class="n">alternative</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;two.sided&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="n">conf.level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.95</span><span class="p">,</span><span class="w"> </span><span class="n">correct</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	2-sample test for equality of proportions with continuity correction
+
+data:  c(21, 36) out of c(715, 459)
+X-squared = 13.523, df = 1, p-value = 0.0002357
+alternative hypothesis: two.sided
+95 percent confidence interval:
+ -0.07838277 -0.01973871
+sample estimates:
+    prop 1     prop 2 
+0.02937063 0.07843137 
+</pre></div>
+</div>
+</div>
+</div>
+<p>The null hypothesis is that the proportion of low birthweight babies is equal in the two groups (smokers and non-smokers). The p-value is 0.0002, providing strong evidence against the null hypothesis.</p>
+<p>The estimated difference in proportion (95% CI) is: 4.9% (1.97%, 7.83%) (proportion among smokers minus proportion among non-smokers). We estimate that the proportion of low birthweight babies among mothers who smoke is 5% higher than among those who do not. Our data are consistent with this difference being as low as 2% or as high as 8%.</p>
+<p>Note that the p-value is &lt;0.05, so we expect our 95% CI to exclude the “null value”. Here, the null value is zero (no difference in proportions). The confidence interval does indeed exclude the null value.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="interpreting-tables-of-results">
+<h1>Interpreting tables of results<a class="headerlink" href="#interpreting-tables-of-results" title="Permalink to this heading">#</a></h1>
+<p><strong>Question 4.</strong> [Optional]</p>
+<p>The authors have estimated the odds of a renal outcome (a composite outcome, which means that the outcome is that any one of a number of renal problems occurred). The odds ratio compares the odds of the outcome between the groups listed under “risk factor”.</p>
+<p>For Aminocaproic acid vs control, for example, this odds ratio compares the odds of the renal outcome occurring in the Aminocaproic cid group compared to the control group. The odds ratio is estimated to be 1.03 with a 95% CI from 0.61 to 1.76. So The “best guess” is an odds ratio very close to 1. Because this is a ratio, the null value indicating no difference is equal to 1. So there is little suggestion of a relationship between this risk factor and the outcome, although the confidence interval is quite wide and includes potentially important relationships in either direction. The p-value of 0.91 gives no evidence against the null hypothesis of no association (i.e. the null hypothesis is that the odds ratio is equal to 1).</p>
+<p>For history of intravenous drug use, the odds ratio is estimated as 3.29 (95% CI 1.08 to 10.04), suggesting that the odds of the renal outcome occurring are three times higher in intravenous drug users than in other participants. The confidence interval is very wide, going all the way down to 1.08. However, it excludes zero, so there is some evidence that there is an association.</p>
+<p>From the discussion above, it should be clear that looking at the magnitude of the estimates and confidence intervals adds a lot to the interpretation of the p-value.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./08"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">8 Practical: Hypothesis testing and CIs - Solutions</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-two-sample-t-test">The two-sample t-test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-confidence-intervals-and-p-values">Interpreting confidence intervals and p-values</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-two-proportions">Comparing two proportions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-tables-of-results">Interpreting tables of results</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
